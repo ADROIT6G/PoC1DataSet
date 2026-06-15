@@ -1,0 +1,5 @@
+/Recordings/**
+/Releases/**
+*.7z.*
+!/Releases/1.0/README.md
+!/Releases/1.0/recordings_manifest.sha256
