@@ -7,14 +7,17 @@ This release contains the compressed recording archive parts for version `1.0`.
 - `recordings.7z.002`
 - `recordings.7z.003`
 - `recordings.7z.004`
-- `recordings_manifest.sha256`
+- `merged_point_clouds.7z` (PLY files of merged point cloud)
+- `renders.7z` (render images from virtual classroom viewpoints)
+- `skeleton/` (BVH and JSON skeleton files for teacher)
+- `release_manifest.sha256` (SHA-256 checksums for all release assets)
 
 ## Verification
-Before extracting, verify each part's checksum.
+Before extracting, verify each asset's checksum.
 
 ### Windows PowerShell
 ```powershell
-Get-Content .\recordings_manifest.sha256 | ForEach-Object {
+Get-Content .\release_manifest.sha256 | ForEach-Object {
   $cols = $_ -split '\s+'; $expected=$cols[0]; $file=$cols[1]
   $actual=(Get-FileHash $file -Algorithm SHA256).Hash
   if ($actual -ne $expected) { Write-Error "MISMATCH: $file"; exit 1 } else { Write-Host "OK: $file" }
@@ -23,12 +26,17 @@ Get-Content .\recordings_manifest.sha256 | ForEach-Object {
 
 ### Linux/macOS
 ```bash
-sha256sum -c recordings_manifest.sha256
+sha256sum -c release_manifest.sha256
 ```
 
 ## Extraction
 ```powershell
+# Extract recordings
 7z x recordings.7z.001 -oRecordings
+# Extract merged point clouds
+7z x merged_point_clouds.7z -oPointClouds
+# Extract renders
+7z x renders.7z -oRenders
 ```
 
 If the release assets are downloaded somewhere else, copy them into this directory before running the checksum verification.

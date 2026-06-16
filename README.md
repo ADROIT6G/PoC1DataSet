@@ -8,32 +8,40 @@ The actual recording data is stored as split archive assets in GitHub Releases r
 Release assets are available under the `1.0` release.
 
 ## Download and verify recordings
-1. Download all parts from the release:
-   - `recordings.7z.001`
-   - `recordings.7z.002`
-   - `recordings.7z.003`
-   - `recordings.7z.004`
-   - `recordings_manifest.sha256`
+1. Download all assets from the release (in `Releases/1.0`):
+  - `recordings.7z.001`
+  - `recordings.7z.002`
+  - `recordings.7z.003`
+  - `recordings.7z.004`
+  - `merged_point_clouds.7z`
+  - `renders.7z`
+  - `skeleton/` (skeleton files in BVH/JSON formats)
+  - `release_manifest.sha256` (checksums for all release assets)
 
 2. Verify checksums before extraction.
 
 ### Windows (PowerShell)
 ```powershell
-Get-Content .\Releases\1.0\recordings_manifest.sha256 | ForEach-Object {
+Get-Content .\Releases\1.0\release_manifest.sha256 | ForEach-Object {
   $cols = $_ -split '\s+'; $expected=$cols[0]; $file=$cols[1]
-  $actual=(Get-FileHash $file -Algorithm SHA256).Hash
+  $actual=(Get-FileHash (Join-Path '.\Releases\1.0' $file) -Algorithm SHA256).Hash
   if ($actual -ne $expected) { Write-Error "MISMATCH: $file"; exit 1 } else { Write-Host "OK: $file" }
 }
 ```
 
 ### Linux/macOS
 ```bash
-sha256sum -c Releases/1.0/recordings_manifest.sha256
+sha256sum -c Releases/1.0/release_manifest.sha256
 ```
 
-3. Extract the recordings:
+3. Extract assets:
 ```powershell
+# Extract recordings
 7z x Releases\1.0\recordings.7z.001 -oReleases\1.0\Recordings
+# Extract merged point clouds
+7z x Releases\1.0\merged_point_clouds.7z -oReleases\1.0\PointClouds
+# Extract renders
+7z x Releases\1.0\renders.7z -oReleases\1.0\Renders
 ```
 
 ## Notes
