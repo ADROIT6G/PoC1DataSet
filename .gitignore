@@ -4,3 +4,7 @@
 !/Releases/1.0/
 !/Releases/1.0/README.md
 !/Releases/1.0/recordings_manifest.sha256
+!/Releases/1.0/metadata.json
+!/Releases/1.0/*.json
+!/Releases/1.0/*.md
+!/Releases/1.0/*.sha256
