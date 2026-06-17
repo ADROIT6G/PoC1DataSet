@@ -5,7 +5,22 @@ This repository contains the source and metadata for the `PoC1DataSet` project.
 ## Large recording files
 The actual recording data is stored as split archive assets in GitHub Releases rather than in the Git repository.
 
-Release assets are available under the `1.0` release.
+Release assets are available under the `1.0` release and include:
+- `recordings.7z.001`
+- `recordings.7z.002`
+- `recordings.7z.003`
+- `recordings.7z.004`
+- `merged_point_clouds.7z`
+- `renders.7z`
+- `metadata.json`
+- `recordings_manifest.sha256`
+- `release_manifest.sha256`
+- `camera0_skeleton.bvh`
+- `camera0_skeleton.json`
+- `camera1_skeleton.bvh`
+- `camera1_skeleton.json`
+- `camera2_skeleton.bvh`
+- `camera2_skeleton.json`
 
 ## Download and verify recordings
 1. Download all assets from the release (in `Releases/1.0`):

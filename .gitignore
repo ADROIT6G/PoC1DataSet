@@ -8,3 +8,5 @@
 !/Releases/1.0/*.json
 !/Releases/1.0/*.md
 !/Releases/1.0/*.sha256
+!/Releases/1.0/camera_source/
+!/Releases/1.0/camera_source/camera_source.json
